@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Utilisateur;
+use App\Repository\IUtilisateurRepository;
 
 class UtilisateurRepository implements IUtilisateurRepository
 {

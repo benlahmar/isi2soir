@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
-use IUtilisateurService;
-
+use App\Services\IUtilisateurService;
 class UtilisateurController extends Controller
 {
     private $utilisateurService;
@@ -19,9 +18,9 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        $this->utilisateurService->getAllUtilisateurs();
+        $us=$this->utilisateurService->getAllUtilisateurs();
         return view('utilisateurs.index', [
-            'utilisateurs' => $this->utilisateurService->getAllUtilisateurs()
+            'utilisateurs' => $us
         ]);
     }
 
@@ -31,6 +30,7 @@ class UtilisateurController extends Controller
     public function create()
     {
         //
+        return view('utilisateurs.create');
     }
 
     /**
@@ -39,6 +39,17 @@ class UtilisateurController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'log' => 'required|string|max:255',
+            'pass' => 'required|string|max:255',
+        ]);
+        $utilisateur = new utilisateur();
+        $utilisateur->nom = $request->input('nom');
+        $utilisateur->log = $request->input('log');
+        $utilisateur->pass = $request->input('pass');
+        $this->utilisateurService->createUtilisateur($utilisateur);
+        return redirect()->route('utilisateurs.index')->with('success', 'Utilisateur created successfully.');
     }
 
     /**
@@ -47,6 +58,9 @@ class UtilisateurController extends Controller
     public function show(utilisateur $utilisateur)
     {
         //
+        return view('utilisateurs.show', [
+            'utilisateur' => $this->utilisateurService->getUtilisateurById($utilisateur->id)
+        ]);
     }
 
     /**
@@ -55,6 +69,10 @@ class UtilisateurController extends Controller
     public function edit(utilisateur $utilisateur)
     {
         //
+        return view('utilisateurs.edit', [
+            'utilisateur' => $this->utilisateurService->getUtilisateurById($utilisateur->id)
+        ]);
+
     }
 
     /**
@@ -63,6 +81,19 @@ class UtilisateurController extends Controller
     public function update(Request $request, utilisateur $utilisateur)
     {
         //
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'log' => 'required|string|max:255',
+            'pass' => 'required|string|max:255',
+        ]);
+       
+        $data = [
+            'nom' =>  $request->input('nom'),
+            'log' => $request->input('log'),
+            'pass' => $request->input('pass'),
+        ];
+        $this->utilisateurService->updateUtilisateur($utilisateur->id, $data);
+        return redirect()->route('utilisateurs.index')->with('success', 'Utilisateur updated successfully.');
     }
 
     /**

@@ -15,4 +15,14 @@ class Utilisateur extends Model
         'pass',
     ];
 
+
+public function invitationsSent()
+{
+    return $this->hasMany(Invitation::class, 'inviter_id');
+}
+
+public function invitationsReceived()
+{
+    return $this->hasMany(Invitation::class, 'invitee_id');
+}
 }

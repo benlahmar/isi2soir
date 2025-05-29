@@ -1,4 +1,8 @@
 <?php
+
+namespace App\Repository;
+
+
 interface IUtilisateurRepository
 {
     public function getAllUtilisateurs();

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Calc;
 use App\Http\Controllers\ControllerProduct;
 use App\Http\Controllers\convertisseurController;
+use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,5 @@ Route::get('/conv',[convertisseurController::class,'index']);
 Route::get('/conv/argent',[convertisseurController::class,'argent']);
 
 Route::resource('produits', ControllerProduct::class);
+
+Route::resource('utilisateurs', UtilisateurController::class);
