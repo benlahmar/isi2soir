@@ -48,7 +48,7 @@ class UtilisateurController extends Controller
         $utilisateur->nom = $request->input('nom');
         $utilisateur->log = $request->input('log');
         $utilisateur->pass = $request->input('pass');
-        $this->utilisateurService->createUtilisateur($utilisateur);
+      //  $this->utilisateurService->createUtilisateur($utilisateur);
         return redirect()->route('utilisateurs.index')->with('success', 'Utilisateur created successfully.');
     }
 

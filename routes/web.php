@@ -3,8 +3,10 @@
 use App\Http\Controllers\Calc;
 use App\Http\Controllers\ControllerProduct;
 use App\Http\Controllers\convertisseurController;
+use App\Http\Controllers\HuggingFaceController;
 use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,5 @@ Route::get('/conv/argent',[convertisseurController::class,'argent']);
 Route::resource('produits', ControllerProduct::class);
 
 Route::resource('utilisateurs', UtilisateurController::class);
+Route::get('/llm',[HuggingFaceController::class,'index'])->name('llm.index');
+Route::get('/llm/start',[HuggingFaceController::class,'start'])->name('llm.start');
