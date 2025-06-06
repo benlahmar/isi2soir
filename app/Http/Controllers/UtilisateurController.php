@@ -8,7 +8,7 @@ use App\Services\IUtilisateurService;
 class UtilisateurController extends Controller
 {
     private $utilisateurService;
-
+    private $iinvitation;
     public function __construct(IUtilisateurService $utilisateurService)
     {
         $this->utilisateurService = $utilisateurService;
@@ -48,7 +48,7 @@ class UtilisateurController extends Controller
         $utilisateur->nom = $request->input('nom');
         $utilisateur->log = $request->input('log');
         $utilisateur->pass = $request->input('pass');
-      //  $this->utilisateurService->createUtilisateur($utilisateur);
+        $this->utilisateurService->createUtilisateur($utilisateur->toArray());
         return redirect()->route('utilisateurs.index')->with('success', 'Utilisateur created successfully.');
     }
 

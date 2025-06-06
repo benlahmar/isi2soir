@@ -1,3 +1,4 @@
+
 <form action="{{ route('llm.index') }}" method="get">
     @csrf
     <div>

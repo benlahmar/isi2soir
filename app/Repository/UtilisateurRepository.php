@@ -1,4 +1,5 @@
 <?php
+namespace App\Repository;
 
 use App\Models\Utilisateur;
 use App\Repository\IUtilisateurRepository;

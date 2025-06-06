@@ -34,13 +34,13 @@
                     <td>{{$utilisateur->nom}}</td>
                     <td>{{$utilisateur->log}}</td>          
                     <td>{{$utilisateur->create_at}}</td>
-                    <td>---------------</td>
+                    <td</td>
                     <td>
                         <!-- Add your action buttons here -->
                         <form action="{{ route('utilisateurs.destroy', $utilisateur->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
+                            <button class="btn btn-sm btn-primary" type="submit" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
                         </form>
                     </td>
                 </tr>

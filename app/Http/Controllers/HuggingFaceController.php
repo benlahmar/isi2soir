@@ -26,7 +26,7 @@ class HuggingFaceController extends Controller
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $hfToken,
                 'Content-Type' => 'application/json',
-            ])->post('https://router.huggingface.co/nebius/v1/chat/completions', [
+            ])->post('https://router.huggingface.co/novita/v3/openai/chat/completions', [
                 'messages' => [
                     [
                         'role' => 'user',
@@ -34,7 +34,7 @@ class HuggingFaceController extends Controller
                         
                     ],
                 ],
-                'model' => 'mistralai/Mistral-Nemo-Instruct-2407',
+                'model' => 'deepseek/deepseek-r1-0528',
                 'stream' => false,
             ]);
 
