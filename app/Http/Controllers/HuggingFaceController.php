@@ -31,6 +31,7 @@ class HuggingFaceController extends Controller
                     [
                         'role' => 'user',
                         'content' => $prompt,
+                        
                     ],
                 ],
                 'model' => 'mistralai/Mistral-Nemo-Instruct-2407',
