@@ -12,12 +12,11 @@ class HuggingFaceController extends Controller
     }
     public function index(Request $request)
     {
-        $promptu=$request->input('prompt'); // Get the prompt from the request
+        $promptu=$request->input('prompt'); 
         $prompt="vous etes un expert en IT, vous devez repondre a la question suivante,".$promptu."  :  REPONDRE TOUJOURS AVEC LA MEME LANGUE DE LA QUESTION. repondre  a la question sans introduction ni conclusion"; // Add a question mark at the end
         
-       // $prompt = $prompt . ' : ' . $promptu; // Concatenate the prompt with the user input
-       var_dump($prompt);
-        $hfToken = env('HF_TOKEN'); // Get your Hugging Face token from your .env file
+      
+        $hfToken = env('HF_TOKEN'); 
 
         if (!$hfToken) {
             return response()->json(['error' => 'Hugging Face token (HF_TOKEN) not set in .env'], 500);
@@ -42,9 +41,8 @@ class HuggingFaceController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $data2 = $data['choices'][0]['message']['content'] ?? 'No content returned';
-                return $data2; // Return the content directly
-                // You can log or process $data2 as needed
-                // Process the response data here
+               // return $data2; // Return the content directly
+                return view('llm.index', ['response' => $data2]); // Return a view with the response
                // return response()->json($data);
             } else {
                 // Handle unsuccessful response
